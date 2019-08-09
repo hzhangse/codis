@@ -30,7 +30,7 @@ spec:
       - name: your-registry
       containers:
       - name: codis-ha
-        image: codis-image
+        image: registry.cn-hangzhou.aliyuncs.com/bohbohman/codis-image
         imagePullPolicy: IfNotPresent
         command: ["codis-ha"]
         args: ["-l","log/$(POD_NAME).log","--interval","5","--dashboard=$(DASHBOARD_ADDR)"]

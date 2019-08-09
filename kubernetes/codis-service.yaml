@@ -65,3 +65,20 @@ spec:
     - port: 12345
   selector:
     app: codis-ha
+    
+---   
+ 
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: paascloud-db-redis
+  name: paascloud-db-redis
+spec:
+  externalIPs:
+    - 192.168.10.129
+  ports:
+    - port: 6379
+      targetPort: 6379
+  selector:
+    app: codis-server    

@@ -14,7 +14,7 @@ spec:
       - name: your-registry
       containers:
       - name: codis-dashboard
-        image: codis-image
+        image: registry.cn-hangzhou.aliyuncs.com/bohbohman/codis-image
         imagePullPolicy: IfNotPresent
         command: ["codis-dashboard"]
         args: ["-l","log/$(POD_NAME).log","-c","$(CODIS_PATH)/config/dashboard.toml","--host-admin","$(POD_IP):18080", "--zookeeper","$(ZK_ADDR)","--product_name","$(PRODUCT_NAME)","--pidfile","log/dashboard.pid","--remove-lock"]
@@ -39,9 +39,9 @@ spec:
         - name: ZK_ADDR
           value: "zookeeper:2181"
         - name: PRODUCT_NAME
-          value: "codis-test"
-        #- name: PRODUCT_AUTH
-        #  value: ""
+          value: "paascloud-db-redis"
+        - name: PRODUCT_AUTH
+          value: "paascloudredis"
         ports:
         - containerPort: 18080
           name: dashboard

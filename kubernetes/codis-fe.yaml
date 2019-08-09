@@ -13,7 +13,7 @@ spec:
       - name: your-registry
       containers:
       - name: codis-fe
-        image: codis-image
+        image: registry.cn-hangzhou.aliyuncs.com/bohbohman/codis-image
         imagePullPolicy: IfNotPresent
         command: ["codis-fe"]
         args: ["-l","log/$(POD_NAME).log","--zookeeper","$(ZK_ADDR)","--listen=$(POD_IP):8080","--assets=$(CODIS_PATH)/bin/assets"]

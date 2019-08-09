@@ -31,7 +31,7 @@ spec:
       - name: your-registry
       containers:
       - name: codis-server
-        image: codis-image
+        image: registry.cn-hangzhou.aliyuncs.com/bohbohman/codis-image
         imagePullPolicy: IfNotPresent
         command: ["codis-server"]
         args: ["$(CODIS_PATH)/config/redis.conf","--logfile","$(POD_NAME).log","--protected-mode", "no", "--bind", "$(POD_IP)", "--daemonize", "no"]
@@ -66,6 +66,10 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
+        - name: PRODUCT_NAME
+          value: "paascloud-db-redis"
+        - name: PRODUCT_AUTH
+          value: "paascloudredis"              
         ports:
         - containerPort: 6379
           name: service-port

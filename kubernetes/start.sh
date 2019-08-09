@@ -8,8 +8,8 @@ if [ $(kubectl get pods -l app=zk |grep Running |wc -l) == 0 ]; then
     echo "finish create zookeeper cluster"
 fi
 
-product_name="codis-test"
-#product_auth="auth"
+product_name="paascloud-db-redis"
+product_auth="paascloudredis"
 case "$1" in
 
 ### 清理原来codis遗留数据
