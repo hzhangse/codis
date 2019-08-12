@@ -28,6 +28,7 @@ buildup)
     kubectl create -f codis-dashboard.yaml
     while [ $(kubectl get pods -l app=codis-dashboard |grep Running |wc -l) != 1 ]; do sleep 1; done;
     kubectl create -f codis-proxy.yaml
+    kubectl create -f codis-server-pv.yaml
     kubectl create -f codis-server.yaml
     servers=$(grep "replicas" codis-server.yaml |awk  '{print $2}')
     while [ $(kubectl get pods -l app=codis-server |grep Running |wc -l) != $servers ]; do sleep 1; done;

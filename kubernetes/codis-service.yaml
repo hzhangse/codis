@@ -79,6 +79,6 @@ spec:
     - 192.168.10.129
   ports:
     - port: 6379
-      targetPort: 6379
+      targetPort: 19000
   selector:
-    app: codis-server    
+    app: codis-proxy    

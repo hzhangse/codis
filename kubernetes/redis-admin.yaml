@@ -1,61 +1,61 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: redis-admin
-  
-spec:
-  progressDeadlineSeconds: 600
-  replicas: 1
-  revisionHistoryLimit: 10
-  selector:
-    matchLabels:
-      app: redis-admin
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
-  template:
-    metadata:
-      
-      labels:
-        app: redis-admin
-    spec:
-      containers:
-        - env:
-            - name: REDIS_1_HOST
-              value: paascloud-db-redis
-            - name: REDIS_1_NAME
-              value: paascloud-db-redis
-            - name: REDIS_1_PORT
-              value: '6379'
-#            - name: REDIS_1_AUTH
-#              value: paascloudredis
-          image: erikdubbelboer/phpredisadmin
-          imagePullPolicy: Always
-          name: redis-admin
-          ports:
-            - containerPort: 80
-              protocol: TCP
-          resources: {}
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
-      terminationGracePeriodSeconds: 30
----
-apiVersion: v1
-kind: Service
-metadata:  
-  name: redis-admin
-spec:
-  ports:
-    - port: 80
-      protocol: TCP
-      targetPort: 80
-  selector:
-    app: redis-admin
-
-
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  name: redis-admin
+#  
+#spec:
+#  progressDeadlineSeconds: 600
+#  replicas: 1
+#  revisionHistoryLimit: 10
+#  selector:
+#    matchLabels:
+#      app: redis-admin
+#  strategy:
+#    rollingUpdate:
+#      maxSurge: 25%
+#      maxUnavailable: 25%
+#    type: RollingUpdate
+#  template:
+#    metadata:
+#      
+#      labels:
+#        app: redis-admin
+#    spec:
+#      containers:
+#        - env:
+#            - name: REDIS_1_HOST
+#              value: paascloud-db-redis
+#            - name: REDIS_1_NAME
+#              value: paascloud-db-redis
+#            - name: REDIS_1_PORT
+#              value: '6379'
+##            - name: REDIS_1_AUTH
+##              value: paascloudredis
+#          image: erikdubbelboer/phpredisadmin
+#          imagePullPolicy: Always
+#          name: redis-admin
+#          ports:
+#            - containerPort: 80
+#              protocol: TCP
+#          resources: {}
+#          terminationMessagePath: /dev/termination-log
+#          terminationMessagePolicy: File
+#      dnsPolicy: ClusterFirst
+#      restartPolicy: Always
+#      schedulerName: default-scheduler
+#      securityContext: {}
+#      terminationGracePeriodSeconds: 30
+#---
+#apiVersion: v1
+#kind: Service
+#metadata:  
+#  name: redis-admin
+#spec:
+#  ports:
+#    - port: 80
+#      protocol: TCP
+#      targetPort: 80
+#  selector:
+#    app: redis-admin
+#
+#
